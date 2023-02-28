@@ -15,6 +15,8 @@ class RegisterController extends Controller
         return view('auth.register');
     }
     public function store(Request $request){
+
+        // check if new coming user is first or single
         $cnt = User::count();
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -71,6 +73,8 @@ class RegisterController extends Controller
             Auth::login($user);
             return  redirect()->route('home');
         }
+
+        return  redirect()->route('login');
     }
     public function destroy(Request $request){
         Auth::logout();

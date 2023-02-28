@@ -2,15 +2,16 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Blade\Permisson\PermissonController;
+use App\Http\Controllers\Blade\Role\RoleController;
 use App\Http\Controllers\Blade\User\UserProfileController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
-    return redirect()->route('home');
-});
 
+Route::get('/', function () {
+   return redirect()->route('home');
+});
 
 Route::middleware('guest')->group(function (){
 
@@ -38,5 +39,12 @@ Route::group(['middleware' => 'auth'],function (){
     Route::get('/permission/{id}/edit',[PermissonController::class,'edit'])->name('permissionEdit');
     Route::post('/permission/update/{id}',[PermissonController::class,'update'])->name('permissionUpdate');
     Route::delete('/permission/delete/{id}',[PermissonController::class,'destroy'])->name('permissionDestroy');
+    // Roles
+    Route::get('/roles',[RoleController::class,'index'])->name('roleIndex');
+    Route::get('/role/add',[RoleController::class,'add'])->name('roleAdd');
+    Route::post('/role/create',[RoleController::class,'create'])->name('roleCreate');
+    Route::get('/role/{role_id}/edit',[RoleController::class,'edit'])->name('roleEdit');
+    Route::post('/role/update/{role_id}',[RoleController::class,'update'])->name('roleUpdate');
+    Route::delete('/role/delete/{id}',[RoleController::class,'destroy'])->name('roleDestroy');
 });
 

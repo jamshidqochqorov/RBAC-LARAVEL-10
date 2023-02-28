@@ -11,12 +11,18 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
 
+    <link href="/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/libs/spectrum-colorpicker2/spectrum.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/libs/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/assets/libs/@chenfengyuan/datepicker/datepicker.min.css">
     <!-- Bootstrap Css -->
-    <link href="{{ asset('assets/css/bootstrap.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/bootstrap.min.css')}}"  rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
     <link href="{{ asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- App Css-->
-    <link href="{{ asset('assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/app.min.css')}}" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -35,19 +41,19 @@
                 <div class="navbar-brand-box">
                     <a href="index.html" class="logo logo-dark">
                                 <span class="logo-sm">
-                                    <img src="assets/images/logo.svg" alt="" height="22">
+                                    <img src="/assets/images/logo.svg" alt="" height="22">
                                 </span>
                         <span class="logo-lg">
-                                    <img src="assets/images/logo-dark.png" alt="" height="17">
+                                    <img src="/assets/images/logo-dark.png" alt="" height="17">
                                 </span>
                     </a>
 
                     <a href="index.html" class="logo logo-light">
                                 <span class="logo-sm">
-                                    <img src="assets/images/logo-light.svg" alt="" height="22">
+                                    <img src="/assets/images/logo-light.svg" alt="" height="22">
                                 </span>
                         <span class="logo-lg">
-                                    <img src="assets/images/logo-light.png" alt="" height="19">
+                                    <img src="/assets/images/logo-light.png" alt="" height="19">
                                 </span>
                     </a>
                 </div>
@@ -93,17 +99,17 @@
                 <div class="dropdown d-inline-block">
                     <button type="button" class="btn header-item waves-effect"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img id="header-lang-img" src="assets/images/flags/us.jpg" alt="Header Language" height="16">
+                        <img id="header-lang-img" src="/assets/images/flags/us.jpg" alt="Header Language" height="16">
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
 
                         <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="en">
-                            <img src="assets/images/flags/us.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">English</span>
+                            <img src="/assets/images/flags/us.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">English</span>
                         </a>
                         <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="ru">
-                            <img src="assets/images/flags/russia.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Russian</span>
+                            <img src="/assets/images/flags/russia.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Russian</span>
                         </a>
                     </div>
                 </div>
@@ -148,14 +154,14 @@
                 <!-- Left Menu Start -->
                 <ul class="metismenu list-unstyled" id="side-menu">
 
-                    <li>
+                    <li class="mm-{{ Request::is('permission*') || Request::is('role*') ? 'active' : '' }}">
                         <a href="javascript: void(0);" class="waves-effect">
                             <i class="bx bx-home-circle"></i>
                             <span key="t-dashboards">Foydalanuvchini boshqaruvi</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="{{route('permissionIndex')}}" >Ruxsatlar</a></li>
-                            <li><a href="dashboard-saas.html" key="t-saas">Rollar</a></li>
+                            <li><a class="{{ Request::is('permission*') ? 'active' : '' }}" href="{{route('permissionIndex')}}" >Ruxsatlar</a></li>
+                            <li><a class="{{ Request::is('role*') ? 'active' : '' }}" href="{{route('roleIndex')}}" >Rollar</a></li>
                             <li><a href="dashboard-crypto.html" key="t-crypto">Foydalanuvchilar</a></li>
                             <li><a href="dashboard-blog.html" key="t-blog">Blog</a></li>
                         </ul>
@@ -295,17 +301,28 @@
 </div>
 <!-- /Right-bar -->
 
-<!-- Right bar overlay-->
-<div class="rightbar-overlay"></div>
+
 
 <!-- JAVASCRIPT -->
+<script src="{{asset('/assets/libs/toastr/build/toastr.min.js')}}"></script>
+<script src="{{asset('/assets/js/pages/toastr.init.js')}}"></script>
 <script src="{{ asset('assets/libs/jquery/jquery.min.js')}}"></script>
 <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{ asset('assets/libs/metismenu/metisMenu.min.js')}}"></script>
 <script src="{{ asset('assets/libs/simplebar/simplebar.min.js')}}"></script>
 <script src="{{ asset('assets/libs/node-waves/waves.min.js')}}"></script>
-
+<script src="{{asset('assets/js/pages/form-advanced.init.js')}}"></script>
 <script src="{{ asset('assets/js/app.js')}}"></script>
 
+<script src="{{asset('assets/libs/select2/js/select2.min.js')}}"></script>
+<script src="{{asset('assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
+<script src="{{asset('assets/libs/spectrum-colorpicker2/spectrum.min.js')}}"></script>
+<script src="{{asset('assets/libs/bootstrap-timepicker/js/bootstrap-timepicker.min.js')}}"></script>
+<script src="{{asset('assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js')}}"></script>
+<script src="{{asset('assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js')}}"></script>
+<script src="{{asset('assets/libs/@chenfengyuan/datepicker/datepicker.min.js')}}"></script>
+
+<!-- form advanced init -->
+<script src="{{asset('assets/js/pages/form-advanced.init.js')}}"></script>
 </body>
 </html>

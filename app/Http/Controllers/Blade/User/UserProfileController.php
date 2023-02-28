@@ -35,9 +35,11 @@ class UserProfileController extends Controller
 
         $user->name = $request->input('name');
         $user->email = $request->input('email');
-        if($request->password){}
-        $user->password = Hash::make($request->input('password'));
+        if($request->password){
+            $user->password = Hash::make($request->input('password'));
+        }
         $user->save();
+
         return redirect()->route('profile')->with('success','Muvofiqiyatli tahrirlandi!');
     }
 }
