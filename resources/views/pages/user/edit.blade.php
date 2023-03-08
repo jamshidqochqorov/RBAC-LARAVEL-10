@@ -9,7 +9,7 @@
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="{{route('home')}}">Bosh sahifa</a></li>
                         <li class="breadcrumb-item"><a href="{{route('userIndex')}}">Userlar</a></li>
-                        <li class="breadcrumb-item active"><a href="#">Qo'shish</a></li>
+                        <li class="breadcrumb-item active"><a href="#">Tahrirlash</a></li>
                     </ol>
                 </div>
             </div>
@@ -19,11 +19,11 @@
                 <div class="card-body">
                     <h4 class="card-title mb-4">Qo'shish</h4>
 
-                    <form method="post" action="{{route('userCreate')}}">
+                    <form method="post" action="{{route('userUpdate',$user->id)}}">
                         @csrf
                         <div class="mb-3">
                             <label for="formrow-firstname-input" class="form-label ">Nomi</label>
-                            <input value="{{old('name')}}" type="text" class="form-control {{$errors->has('name') ? "parsley-error":"" }}" name="name" >
+                            <input value="{{$user->name}}" type="text" class="form-control {{$errors->has('name') ? "parsley-error":"" }}" name="name" >
                             @if($errors->has('name') || 1)
                                 <ul class="parsley-errors-list filled"  aria-hidden="false">
                                     <li class="parsley-required">{{ $errors->first('name') }}</li>
@@ -33,7 +33,7 @@
 
                         <div class="mb-3">
                             <label for="formrow-firstname-input" class="form-label ">Email</label>
-                            <input value="{{old('email')}}"  type="email" class="form-control {{$errors->has('email') ? "parsley-error":"" }}" name="email" >
+                            <input value="{{$user->email}}"  type="email" class="form-control {{$errors->has('email') ? "parsley-error":"" }}" name="email" >
                             @if($errors->has('email') || 1)
                                 <ul class="parsley-errors-list filled"  aria-hidden="false">
                                     <li class="parsley-required">{{ $errors->first('email') }}</li>
@@ -44,7 +44,7 @@
                             <label class="form-label">Rollar</label>
                             <select name="roles[]" class="select2 form-control select2-multiple " multiple="" >
                                 @foreach($roles as $role)
-                                    <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                    <option value="{{ $role->name }}" {{ ($user->hasRole($role->name) ? "selected":'') }}>{{ $role->name }}</option>
                                 @endforeach
                             </select>
 
@@ -73,7 +73,7 @@
                         <div>
                             <div class="row mt-4">
                                 <div class="col-sm-6">
-                                    <a href="{{route('roleIndex')}}" class="btn text-muted d-none d-sm-inline-block btn-link">
+                                    <a href="{{route('userIndex')}}" class="btn text-muted d-none d-sm-inline-block btn-link">
                                         <i class="mdi mdi-arrow-left me-1"></i>Orqaga</a>
                                 </div> <!-- end col -->
                                 <div class="col-sm-6">

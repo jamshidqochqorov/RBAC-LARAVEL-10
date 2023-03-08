@@ -154,19 +154,23 @@
                 <!-- Left Menu Start -->
                 <ul class="metismenu list-unstyled" id="side-menu">
 
-                    <li class="mm-{{ Request::is('permission*') || Request::is('role*') ||Request::is('user*') ? 'active' : '' }}">
-                        <a href="javascript: void(0);" class="waves-effect">
-                            <i class="bx bx-home-circle"></i>
-                            <span key="t-dashboards">Foydalanuvchini boshqaruvi</span>
-                        </a>
-                        <ul class="sub-menu" aria-expanded="false">
-                            <li><a class="{{ Request::is('permission*') ? 'active' : '' }}" href="{{route('permissionIndex')}}" > <i class="bx bx-key"></i>Ruxsatlar</a></li>
-                            <li><a class="{{ Request::is('role*') ? 'active' : '' }}" href="{{route('roleIndex')}}" ><i class="bx bx-fingerprint"></i>Rollar</a></li>
-                            <li><a class="{{Request::is('user*') ? 'active' :''}} " href="{{route('userIndex')}}"><i class="bx bx-user"></i>Foydalanuvchilar</a></li>
+                   <@canany(['user.show','permission.show','roles.show'])
 
-                        </ul>
-                    </li>
+                        <li class="mm-{{ Request::is('permission*') || Request::is('role*') ||Request::is('user*') ? 'active' : '' }}">
+                            <a href="javascript: void(0);" class="waves-effect">
+                                <i class="bx bx-home-circle"></i>
+                                <span key="t-dashboards">Foydalanuvchini boshqaruvi</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a class="{{ Request::is('permission*') ? 'active' : '' }}" href="{{route('permissionIndex')}}" > <i class="bx bx-key"></i>Ruxsatlar</a></li>
+                                <li><a class="{{ Request::is('role*') ? 'active' : '' }}" href="{{route('roleIndex')}}" ><i class="bx bx-fingerprint"></i>Rollar</a></li>
+                                <li><a class="{{Request::is('user*') ? 'active' :''}} " href="{{route('userIndex')}}"><i class="bx bx-user"></i>Foydalanuvchilar</a></li>
 
+                            </ul>
+                        </li>
+
+
+                    @endcanany()
 
 
                 </ul>

@@ -66,8 +66,8 @@ class PermissonController extends Controller
             $permission->title = $request->get('title');
         }
         $permission->save();
-        message_set('Permission is updated!','success',2);
-        return redirect()->route('permissionIndex');
+
+        return redirect()->route('permissionIndex')->with('success','Muvofiqiyatli tahrirlandi!');
     }
 
     // delete permission
@@ -78,8 +78,8 @@ class PermissonController extends Controller
         DB::table('model_has_permissions')->where('permission_id',$id)->delete();
         DB::table('role_has_permissions')->where('permission_id',$id)->delete();
         $permission->delete();
-        message_set('Permission is deleted!','success',2);
-        return redirect()->back();
+
+        return redirect()->back()->with('success','Muvofiqiyatli o\'chirildi!');
     }
 
 }

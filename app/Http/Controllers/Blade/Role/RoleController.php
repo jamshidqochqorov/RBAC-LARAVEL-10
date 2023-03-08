@@ -49,7 +49,7 @@ class RoleController extends Controller
         }
 
 
-        return redirect()->route('roleIndex');
+        return redirect()->route('roleIndex')->with('success','Muvofiqiyatli yaratildi!');
     }
 
 
@@ -101,7 +101,7 @@ class RoleController extends Controller
         $role->syncPermissions($permissions);
         $role->save();
 
-        return redirect()->route('roleIndex');
+        return redirect()->route('roleIndex')->with('success','Muvofiqiyatli tahrirlandi!');
     }
 
     /**
@@ -123,8 +123,7 @@ class RoleController extends Controller
         DB::table('model_has_roles')->where('role_id',$id)->delete();
         DB::table('role_has_permissions')->where('role_id',$id)->delete();
         $role->delete();
-        message_set('Role is deleted','success',3);
 
-        return redirect()->back();
+        return redirect()->back()->with('success','Muvofiqiyatli o\'chirildi!');
     }
 }

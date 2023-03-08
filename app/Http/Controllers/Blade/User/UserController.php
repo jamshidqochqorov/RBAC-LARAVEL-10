@@ -50,7 +50,7 @@ class UserController extends Controller
 
         $user->assignRole($request->get('roles'));
 
-        return redirect()->route('userIndex');
+        return redirect()->route('userIndex')->with('success','Muvofiqiyatli yaratildi!');
     }
 
     // user edit page
@@ -79,7 +79,6 @@ class UserController extends Controller
     {
         abort_if((!auth()->user()->can('user.edit') && auth()->id() != $id),403);
 
-        $activity = "\nUpdated by: ".logObj(auth()->user());
         $this->validate($request,[
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$id],
@@ -94,8 +93,7 @@ class UserController extends Controller
         }
 
         unset($request['password']);
-        $activity .="\nBefore updates User: ".logObj($user);
-        $activity .=' Roles before: "'.implode(',',$user->getRoleNames()->toArray()).'"';
+
 
         $user->fill($request->all());
         $user->save();
@@ -103,10 +101,6 @@ class UserController extends Controller
         if (isset($request->roles)) $user->syncRoles($request->get('roles'));
         unset($user->roles);
 
-        $activity .="\nAfter updates User: ".logObj($user);
-        $activity .=' Roles after: "'.implode(',',$user->getRoleNames()->toArray()).'"';
-
-        LogWriter::user_activity($activity,'EditingUsers');
 
         if (auth()->user()->can('user.edit'))
             return redirect()->route('userIndex');
@@ -127,30 +121,9 @@ class UserController extends Controller
         }
         DB::table('model_has_roles')->where('model_id',$id)->delete();
         DB::table('model_has_permissions')->where('model_id',$id)->delete();
-        $deleted_by = logObj(auth()->user());
-        $user_log = logObj(User::find($id));
-        $message = "\nDeleted By: $deleted_by\nDeleted user: $user_log";
-        LogWriter::user_activity($message,'DeletingUsers');
+
         return redirect()->route('userIndex');
     }
 
-    public function setTheme(Request $request,$id)
-    {
-        $this->validate($request,[
-            'theme' => 'required'
-        ]);
 
-        if (!in_array($request->theme,['default','dark','light']))
-        {
-            message_set("$request->theme mavzusi mavjud emas!",'warning',3);
-        }
-        else
-        {
-            $user = User::findOrFail($id);
-            $user->setTheme($request->theme);
-            message_set("`$request->theme` mavzusi o'rnatildi!",'success',1);
-        }
-
-        return redirect()->back();
-    }
 }

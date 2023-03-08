@@ -26,7 +26,7 @@ class LoginController extends Controller
 
             $request->session()->regenerate();
 
-            return redirect()->intended('/');
+            return redirect()->intended('/')->with('success','Muvofiqiyatli tizimga kirdingiz!');
         }
 
         return back()->withErrors([

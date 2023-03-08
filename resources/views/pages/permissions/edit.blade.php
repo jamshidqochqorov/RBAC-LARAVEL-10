@@ -9,6 +9,7 @@
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="{{route('home')}}">Bosh sahifa</a></li>
                         <li class="breadcrumb-item"><a href="{{route('permissionIndex')}}">Permissions</a></li>
+                        <li class="breadcrumb-item"><a href="#">Tahrirlash</a></li>
                     </ol>
                 </div>
             </div>

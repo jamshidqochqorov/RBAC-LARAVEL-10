@@ -36,7 +36,6 @@ Route::group(['middleware' => 'auth'],function (){
     Route::get('/user/{id}/edit',[UserController::class,'edit'])->name('userEdit');
     Route::post('/user/update/{id}',[UserController::class,'update'])->name('userUpdate');
     Route::delete('/user/delete/{id}',[UserController::class,'destroy'])->name('userDestroy');
-    Route::get('/user/theme-set/{id}',[UserController::class,'setTheme'])->name('userSetTheme');
     Route::post('/profile',[UserProfileController::class,'store'])->name('profile_store');
     //logout
     Route::post('logout', [RegisterController::class, 'destroy'])->name('logout');

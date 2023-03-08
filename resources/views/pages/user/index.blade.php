@@ -68,10 +68,10 @@
                                     </td>
                                     <td>
                                         @can('role.delete')
-                                            <form method="post" action="{{route('roleDestroy',$user->id)}}">
+                                            <form method="post" action="{{route('userDestroy',$user->id)}}">
                                                 @csrf
                                                 @can('role.edit')
-                                                    <a href="{{ route('roleEdit',$user->id) }}" class="btn btn-outline-secondary btn-sm edit" title="Edit">
+                                                    <a href="{{ route('userEdit',$user->id) }}" class="btn btn-outline-secondary btn-sm edit" title="Edit">
                                                         <i class="fas fa-pencil-alt"></i>
                                                     </a>
                                                 @endcan
