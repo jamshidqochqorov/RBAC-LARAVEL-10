@@ -154,53 +154,20 @@
                 <!-- Left Menu Start -->
                 <ul class="metismenu list-unstyled" id="side-menu">
 
-                    <li class="mm-{{ Request::is('permission*') || Request::is('role*') ? 'active' : '' }}">
+                    <li class="mm-{{ Request::is('permission*') || Request::is('role*') ||Request::is('user*') ? 'active' : '' }}">
                         <a href="javascript: void(0);" class="waves-effect">
                             <i class="bx bx-home-circle"></i>
                             <span key="t-dashboards">Foydalanuvchini boshqaruvi</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a class="{{ Request::is('permission*') ? 'active' : '' }}" href="{{route('permissionIndex')}}" >Ruxsatlar</a></li>
-                            <li><a class="{{ Request::is('role*') ? 'active' : '' }}" href="{{route('roleIndex')}}" >Rollar</a></li>
-                            <li><a href="dashboard-crypto.html" key="t-crypto">Foydalanuvchilar</a></li>
-                            <li><a href="dashboard-blog.html" key="t-blog">Blog</a></li>
+                            <li><a class="{{ Request::is('permission*') ? 'active' : '' }}" href="{{route('permissionIndex')}}" > <i class="bx bx-key"></i>Ruxsatlar</a></li>
+                            <li><a class="{{ Request::is('role*') ? 'active' : '' }}" href="{{route('roleIndex')}}" ><i class="bx bx-fingerprint"></i>Rollar</a></li>
+                            <li><a class="{{Request::is('user*') ? 'active' :''}} " href="{{route('userIndex')}}"><i class="bx bx-user"></i>Foydalanuvchilar</a></li>
+
                         </ul>
                     </li>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-                    <li>
-                        <a href="javascript: void(0);" class="has-arrow waves-effect">
-                            <i class="bx bx-envelope"></i>
-                            <span key="t-email">Email</span>
-                        </a>
-                        <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="email-inbox.html" key="t-inbox">Inbox</a></li>
-                            <li><a href="email-read.html" key="t-read-email">Read Email</a></li>
-                            <li>
-                                <a href="javascript: void(0);">
-                                    <span class="badge rounded-pill badge-soft-success float-end" key="t-new">New</span>
-                                    <span key="t-email-templates">Templates</span>
-                                </a>
-                                <ul class="sub-menu" aria-expanded="true">
-                                    <li><a href="email-template-basic.html" key="t-basic-action">Basic Action</a></li>
-                                    <li><a href="email-template-alert.html" key="t-alert-email">Alert Email</a></li>
-                                    <li><a href="email-template-billing.html" key="t-bill-email">Billing Email</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
 
                 </ul>
             </div>
@@ -302,10 +269,15 @@
 <!-- /Right-bar -->
 
 
+<script>
+        function myFunction() {
+        if(!confirm("Are You Sure to delete this"))
+        event.preventDefault();
+    }
+</script>
+
 
 <!-- JAVASCRIPT -->
-<script src="{{asset('/assets/libs/toastr/build/toastr.min.js')}}"></script>
-<script src="{{asset('/assets/js/pages/toastr.init.js')}}"></script>
 <script src="{{ asset('assets/libs/jquery/jquery.min.js')}}"></script>
 <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{ asset('assets/libs/metismenu/metisMenu.min.js')}}"></script>

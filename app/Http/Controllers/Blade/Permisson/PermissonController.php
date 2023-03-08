@@ -39,7 +39,7 @@ class PermissonController extends Controller
             'title' => $request->get('title')
         ]);
 
-        return redirect()->route('permissionIndex');
+        return redirect()->route('permissionIndex')->with('success','Muvofiqiyatli yaratildi!');
     }
     // edit page
     public function edit($id)

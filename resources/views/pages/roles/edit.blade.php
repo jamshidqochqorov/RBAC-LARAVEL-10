@@ -18,28 +18,36 @@
                 <div class="card-body">
                     <h4 class="card-title mb-4">Tahrirlash</h4>
 
-                    <form method="post" action="{{route('permissionUpdate',$permission->id)}}">
+                    <form method="post" action="{{route('roleUpdate',$role->id)}}">
                         @csrf
                         <div class="mb-3">
                             <label for="formrow-firstname-input" class="form-label ">Nomi</label>
-                            <input value="{{ old('name',$permission->name) }}" type="text" class="form-control {{$errors->has('name') ? "parsley-error":"" }}" name="name" >
+                            <input value="{{ old('name',$role->name) }}" type="text" class="form-control {{$errors->has('name') ? "parsley-error":"" }}" name="name" >
                             @if($errors->has('name') || 1)
                                 <ul class="parsley-errors-list filled"  aria-hidden="false">
                                     <li class="parsley-required">{{ $errors->first('name') }}</li>
                                 </ul>
                             @endif
+                            <div class="mb-3" >
+                                <label class="form-label">Ruxsatlar</label>
+                                <select name="permissions[]" class="select2 form-control select2-multiple " multiple="" >
+                                    @foreach($permissions as $permission)
+                                        <option value="{{ $permission->name }}" {{ ($role->hasPermissionTo($permission->name)) ? "selected":'' }} >{{ $permission->name }}</option>
+                                    @endforeach
+                                </select>
 
+                            </div>
 
                         </div>
                         <div class="mb-3">
                             <label for="formrow-email-input" class="form-label">Izoh</label>
-                            <input value="{{ old('title',$permission->title) }}" type="text" name="title" class="form-control" >
+                            <input value="{{ old('title',$role->title) }}" type="text" name="title" class="form-control" >
 
                         </div>
                         <div>
                             <div class="row mt-4">
                                 <div class="col-sm-6">
-                                    <a href="{{route('permissionIndex')}}" class="btn text-muted d-none d-sm-inline-block btn-link">
+                                    <a href="{{route('roleIndex')}}" class="btn text-muted d-none d-sm-inline-block btn-link">
                                         <i class="mdi mdi-arrow-left me-1"></i>Orqaga</a>
                                 </div> <!-- end col -->
                                 <div class="col-sm-6">

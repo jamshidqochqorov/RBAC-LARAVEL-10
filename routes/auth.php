@@ -3,6 +3,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Blade\Permisson\PermissonController;
 use App\Http\Controllers\Blade\Role\RoleController;
+use App\Http\Controllers\Blade\User\UserController;
 use App\Http\Controllers\Blade\User\UserProfileController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -27,11 +28,18 @@ Route::group(['middleware' => 'auth'],function (){
     Route::get('/home',[HomeController::class,'index'])->name('home');
 
     //user profile
-    //users
     Route::get('/profile',[UserProfileController::class,'index'])->name('profile');
+    // Users
+    Route::get('/users',[UserController::class,'index'])->name('userIndex');
+    Route::get('/user/add',[UserController::class,'add'])->name('userAdd');
+    Route::post('/user/create',[UserController::class,'create'])->name('userCreate');
+    Route::get('/user/{id}/edit',[UserController::class,'edit'])->name('userEdit');
+    Route::post('/user/update/{id}',[UserController::class,'update'])->name('userUpdate');
+    Route::delete('/user/delete/{id}',[UserController::class,'destroy'])->name('userDestroy');
+    Route::get('/user/theme-set/{id}',[UserController::class,'setTheme'])->name('userSetTheme');
     Route::post('/profile',[UserProfileController::class,'store'])->name('profile_store');
+    //logout
     Route::post('logout', [RegisterController::class, 'destroy'])->name('logout');
-
     // Permissions
     Route::get('/permission',[PermissonController::class,'index'])->name('permissionIndex');
     Route::get('/permission/add',[PermissonController::class,'add'])->name('permissionAdd');

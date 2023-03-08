@@ -9,6 +9,7 @@
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="{{route('home')}}">Bosh sahifa</a></li>
                         <li class="breadcrumb-item"><a href="{{route('roleIndex')}}">Roles</a></li>
+                        <li class="breadcrumb-item"><a href="#">Qo'shish</a></li>
                     </ol>
                 </div>
             </div>
@@ -21,7 +22,7 @@
                     <form method="post" action="{{route('roleCreate')}}">
                         @csrf
                         <div class="mb-3">
-                            <label for="formrow-firstname-input" class="form-label ">Nomi</label>
+                            <label for="formrow-firstname-input" class="form-label ">User Name</label>
                             <input type="text" class="form-control {{$errors->has('name') ? "parsley-error":"" }}" name="name" >
                             @if($errors->has('name') || 1)
                                 <ul class="parsley-errors-list filled"  aria-hidden="false">

@@ -61,16 +61,16 @@
                                         @endforeach
                                     </td>
                                     <td>
-                                        @can('permission.delete')
-                                            <form method="post" action="{{route('permissionDestroy',$role->id)}}">
+                                        @can('role.delete')
+                                            <form method="post" action="{{route('roleDestroy',$role->id)}}">
                                                 @csrf
-                                                @can('permission.edit')
-                                                    <a href="{{ route('permissionEdit',$role->id) }}" class="btn btn-outline-secondary btn-sm edit" title="Edit">
+                                                @can('role.edit')
+                                                    <a href="{{ route('roleEdit',$role->id) }}" class="btn btn-outline-secondary btn-sm edit" title="Edit">
                                                         <i class="fas fa-pencil-alt"></i>
                                                     </a>
                                                 @endcan
                                                 <input name="_method" type="hidden" value="DELETE">
-                                                <button  onclick="if (confirm('Ishonchingiz komilmi?')) {this.form.submit()}" class="btn btn-outline-danger btn-sm edit" title="Delete">
+                                                <button  onclick="return myFunction()" class="btn btn-outline-danger btn-sm edit" title="Delete">
                                                     <i class="fas fa-trash-alt"></i>
                                                 </button>
                                             </form>
