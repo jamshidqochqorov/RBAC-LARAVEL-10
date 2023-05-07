@@ -154,7 +154,7 @@
                 <!-- Left Menu Start -->
                 <ul class="metismenu list-unstyled" id="side-menu">
 
-                   <@canany(['user.show','permission.show','roles.show'])
+                   @canany(['user.show','permission.show','roles.show'])
 
                         <li class="mm-{{ Request::is('permission*') || Request::is('role*') ||Request::is('user*') ? 'active' : '' }}">
                             <a href="javascript: void(0);" class="waves-effect">
