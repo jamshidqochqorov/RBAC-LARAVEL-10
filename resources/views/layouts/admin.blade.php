@@ -162,9 +162,15 @@
                                 <span key="t-dashboards">Foydalanuvchini boshqaruvi</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
+                                @can('permission.show')
                                 <li><a class="{{ Request::is('permission*') ? 'active' : '' }}" href="{{route('permissionIndex')}}" > <i class="bx bx-key"></i>Ruxsatlar</a></li>
+                                @endcan()
+                                @can('role.show')
                                 <li><a class="{{ Request::is('role*') ? 'active' : '' }}" href="{{route('roleIndex')}}" ><i class="bx bx-fingerprint"></i>Rollar</a></li>
+                                  @endcan()
+                                   @can('user.show')
                                 <li><a class="{{Request::is('user*') ? 'active' :''}} " href="{{route('userIndex')}}"><i class="bx bx-user"></i>Foydalanuvchilar</a></li>
+                                      @endcan()
 
                             </ul>
                         </li>
